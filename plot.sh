@@ -1,6 +1,15 @@
 #! /bin/sh
 
-rm -rf "results/math"
+rm -rf results
+mkdir results
+mkdir results/data
+mkdir results/data/normal
+mkdir results/data/normal_with_taskset
+mkdir results/data/pert
+mkdir results/plot
+mkdir results/plot/normal
+mkdir results/plot/normal_with_taskset
+mkdir results/plot/pert
 for timer in $((10000)) $((100000)) $((1000000)); do
 low_bound=$(($timer/2))
 high_bound=$(($timer*2))
