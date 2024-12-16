@@ -63,6 +63,41 @@ EOF
 
 echo "\n" >> "results/math"
 
+
+
+echo "taskset -c 1 ./pert &"
+
+taskset -c 1 ./pert &
+
+echo "taskset -c 1 ./timer_jitter $timer | ./histogramme 1000 $low_bound $high_bound > results/data/pert/$timer"
+
+taskset -c 1 ./timer_jitter $timer | ./histogramme 1000 $low_bound $high_bound > "results/data/pert/$timer"
+
+echo "$timer pert" >> "results/math"
+
+echo "taskset -c 1 ./timer_jitter $timer | ./calculStats $timer >> results/math"
+
+taskset -c 1 ./timer_jitter $timer | ./calculStats $timer >> "results/math"
+
+output="| tee results/plot/pert/$timer.png"
+
+gnuplot << EOF
+	set terminal gif size 800,600
+	set title "$timer"
+	set output '$output'
+	# échelle log en ordonnée
+	set logscale y 10
+	# afficher le contenu du fichier
+	plot [] [0.1:] "results/data/pert/$timer" notitle with boxes
+	pause mouse
+EOF
+
+echo "\n" >> "results/math"
+
+echo "pkill -f pert"
+
+pkill -f pert
+
 done
 
 exit 0
