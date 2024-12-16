@@ -1,13 +1,13 @@
 all : timer_jitter histogramme calculStats
 
-histogramme: histogramme.c
-	gcc histogramme.c -o histogramme
+histogramme: src/histogramme.c
+	gcc src/histogramme.c -o bin/histogramme
 
-calculStats: calculStats.c
-	gcc calculStats.c -o calculStats -lm
+calculStats: src/calculStats.c
+	gcc src/calculStats.c -o bin/calculStats -lm
 
-timer_jitter: timer_jitter.c
-	gcc timer_jitter.c -o timer_jitter  -lrt
+timer_jitter: src/timer_jitter.c
+	gcc src/timer_jitter.c -o bin/timer_jitter  -lrt
 
 clean :
 	rm -rf timer_jitter timer

@@ -9,15 +9,15 @@ echo "$timer"
 echo "$low_bound"
 echo "$high_bound"
 
-echo "./timer_jitter $timer | ./histogramme 1000 $low_bound $high_bound > results/data/normal/$timer"
+echo "./bin/timer_jitter $timer | ./bin/histogramme 1000 $low_bound $high_bound > results/data/normal/$timer"
 
-./timer_jitter $timer | ./histogramme 1000 $low_bound $high_bound > "results/data/normal/$timer"
+./bin/timer_jitter $timer | ./bin/histogramme 1000 $low_bound $high_bound > "results/data/normal/$timer"
 
 echo "$timer normal" >> "results/math"
 
-echo "./timer_jitter $timer | ./calculStats $timer >> results/math"
+echo "./bin/timer_jitter $timer | ./bin/calculStats $timer >> results/math"
 
-./timer_jitter $timer | ./calculStats $timer >> "results/math"
+./bin/timer_jitter $timer | ./bin/calculStats $timer >> "results/math"
 
 output="| tee results/plot/normal/$timer.png"
 
@@ -38,15 +38,15 @@ echo "\n" >> "results/math"
 
 
 
-echo "taskset -c 1 ./timer_jitter $timer | ./histogramme 1000 $low_bound $high_bound > results/data/normal_with_taskset/$timer"
+echo "taskset -c 1 ./bin/timer_jitter $timer | ./bin/histogramme 1000 $low_bound $high_bound > results/data/normal_with_taskset/$timer"
 
-taskset -c 1 ./timer_jitter $timer | ./histogramme 1000 $low_bound $high_bound > "results/data/normal_with_taskset/$timer"
+taskset -c 1 ./bin/timer_jitter $timer | ./bin/histogramme 1000 $low_bound $high_bound > "results/data/normal_with_taskset/$timer"
 
 echo "$timer normal with taskset" >> "results/math"
 
-echo "taskset -c 1 ./timer_jitter $timer | ./calculStats $timer >> results/math"
+echo "taskset -c 1 ./bin/timer_jitter $timer | ./bin/calculStats $timer >> results/math"
 
-taskset -c 1 ./timer_jitter $timer | ./calculStats $timer >> "results/math"
+taskset -c 1 ./bin/timer_jitter $timer | ./bin/calculStats $timer >> "results/math"
 
 output="| tee results/plot/normal_with_taskset/$timer.png"
 
@@ -65,19 +65,19 @@ echo "\n" >> "results/math"
 
 
 
-echo "taskset -c 1 ./pert &"
+echo "taskset -c 1 ./bin/pert &"
 
-taskset -c 1 ./pert &
+taskset -c 1 ./bin/pert &
 
-echo "taskset -c 1 ./timer_jitter $timer | ./histogramme 1000 $low_bound $high_bound > results/data/pert/$timer"
+echo "taskset -c 1 ./bin/timer_jitter $timer | ./bin/histogramme 1000 $low_bound $high_bound > results/data/pert/$timer"
 
-taskset -c 1 ./timer_jitter $timer | ./histogramme 1000 $low_bound $high_bound > "results/data/pert/$timer"
+taskset -c 1 ./bin/timer_jitter $timer | ./bin/histogramme 1000 $low_bound $high_bound > "results/data/pert/$timer"
 
 echo "$timer pert" >> "results/math"
 
-echo "taskset -c 1 ./timer_jitter $timer | ./calculStats $timer >> results/math"
+echo "taskset -c 1 ./bin/timer_jitter $timer | ./bin/calculStats $timer >> results/math"
 
-taskset -c 1 ./timer_jitter $timer | ./calculStats $timer >> "results/math"
+taskset -c 1 ./bin/timer_jitter $timer | ./bin/calculStats $timer >> "results/math"
 
 output="| tee results/plot/pert/$timer.png"
 
