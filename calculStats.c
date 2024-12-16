@@ -3,19 +3,15 @@
 #include <stdio.h>
 #include <math.h>
 
-int main (int argc, char **argv) {
+int main (int c, char **v) {
 	char ligne[1024];
 	long int noMesure = 0;
 	long int mesure, min , max;
 	double moy = .0 , var = .0;
 	double delta, ecart;
-	int target = atoi(argv[1]);
-	FILE * input_file = fopen(("results/data/%s", argv[1]), "r");
-	printf("Input file : %s\n", (("results/data/%s", argv[1])));
-
-	while (fgets(ligne, 1024, input_file) != NULL) {
+	while (fgets(ligne, 1024, stdin) != NULL) {
 		sscanf(ligne,"%li", &mesure);
-		if (mesure > 100*target){
+		if ((c >= 2) && (mesure > 100*atoi(v[1]))){
 			continue;
 		}
 		noMesure++;
