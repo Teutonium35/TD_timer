@@ -10,7 +10,7 @@ mkdir results/plot
 mkdir results/plot/normal
 mkdir results/plot/normal_with_taskset
 mkdir results/plot/pert
-for timer in $((10000)) $((100000)) $((1000000)); do
+for timer in $((5000)) $((6000)) $((10000)) $((100000)) $((1000000)); do
 low_bound=$(($timer/2))
 high_bound=$(($timer*2))
 
